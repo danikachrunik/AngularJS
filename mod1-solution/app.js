@@ -30,8 +30,18 @@ function LunchCheckController($scope) {
       $scope.textColor = "text-danger";
       $scope.message = "Please enter a list of foods you like to eat for lunch.";
     } else {
+      //if input was not empty
+      //check for empty list items
       if(foodsList.some(isEmpty)) {
         $scope.hide = "";
+
+        for(var i = 0, len = foodsList.length; i < len; i++) {
+          console.log(foodsList[i]);
+          if(foodsList[i] == undefined || foodsList[i].length < 1) {
+            foodsList = foodsList.splice(foodsList[i], 1);
+          }
+        }
+
       }
       //check the number of items if the foodsList array
       if(foodsList.length <= 3) {
@@ -47,5 +57,3 @@ function LunchCheckController($scope) {
 } // end of LunchCheckController
 
 })();
-//banana, ice-cream, chocolate sprinkles, cherry
-//banana, ice-cream, ,chocolate sprinkles, cherry
